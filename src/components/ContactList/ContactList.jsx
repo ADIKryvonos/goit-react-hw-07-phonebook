@@ -3,24 +3,17 @@ import React from 'react';
 import { List, Item, Button } from './ContactList.styled';
 import { AiFillDelete } from 'react-icons/ai';
 
-import { deleteContact } from 'redux/contactSlice';
+import { deleteContact } from 'redux/operations';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getAllContact,
-  findFilteredContact,
-  getFilteredContact,
-} from 'redux/selectors';
+import { findFilteredContact } from 'redux/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getAllContact);
-  const filter = useSelector(getFilteredContact);
-
-  const ContactsList = findFilteredContact(contacts, filter);
+  const contacts = useSelector(findFilteredContact);
 
   return (
     <List>
-      {ContactsList.map(({ id, name, number }) => (
+      {contacts.map(({ id, name, number }) => (
         <Item key={id}>
           <IoIosContact />
           {name} : {number}
