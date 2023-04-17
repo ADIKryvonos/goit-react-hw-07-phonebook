@@ -18,23 +18,6 @@ const contactSlice = createSlice({
     error: null,
   },
   reducers: {},
-  // reducers: {
-  //   addContact(state, action) {
-  //     const chekContact = state.contacts.find(
-  //       contact => contact.name === action.payload.name
-  //     );
-  //     if (chekContact) {
-  //       return alert(chekContact.name + ' is already in contact');
-  //     }
-  //     state.contacts = [...state.contacts, action.payload];
-  //   },
-  //   deleteContact(state, action) {
-  //     state.contacts = state.contacts.filter(
-  //       contact => contact.id !== action.payload
-  //     );
-  //   },
-  // },
-
   extraReducers: builder =>
     builder
       .addCase(fetchContacts.pending, statusPending)
@@ -48,12 +31,6 @@ const contactSlice = createSlice({
       .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const chekContact = state.contacts.contacts.find(
-          contact => contact.name === action.payload.name
-        );
-        if (chekContact) {
-          return alert(chekContact.name + ' is already in contact');
-        }
         state.contacts.push(action.payload);
       })
       .addCase(addContact.rejected, statusRejected)
